@@ -13,7 +13,7 @@ Funky Puzzle is a simple game with JavaScript, Where player needs to find matchi
 HTML,JAVASCRIPT,CSS
 
 ## Stage 1
-![Funky Puzzle JS](https://github.com/SrinivasNarayansetty/funky-puzzle/blob/master/public/assets/images/screen1.png)
+![Funky Puzzle JS](https://github.com/SrinivasNarayansetty/funky-puzzle/blob/master/public/assets/images/screen.png)
 
 ## Stage 2
 ![Funky Puzzle JS](https://github.com/SrinivasNarayansetty/funky-puzzle/blob/master/public/assets/images/screen2.png)
