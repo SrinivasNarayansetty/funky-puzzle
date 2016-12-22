@@ -1,0 +1,207 @@
+div#memory_board {
+    width: 620px;
+    height: 410px;
+    padding: 10px;
+    margin: 0px auto;
+    /*border-radius: 10px;*/
+}
+
+div#memory_board > div {
+    background: url(../public/assets/images/puzzle.png) no-repeat;
+    width: 100px;
+    height: 100px;
+    float: left;
+    font-size: 80px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 10px;
+    background-size: contain;
+}
+
+.funky-header {
+    background-color: #0888ca;
+    padding: 28px;
+    color: white;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.timer {
+    position: fixed;
+    right: 10px;
+    top: 150px;
+    border: 1px solid #f0f0f0;
+    padding: 0px 60px;
+}
+
+.scores {
+    position: fixed;
+    right: 10px;
+    top: 300px;
+    border: 1px solid #f0f0f0;
+    padding: 0px 60px;
+}
+
+.game_area {
+    display: flex;
+    position: relative;
+}
+
+.wrapper {
+    position: fixed;
+    z-index: 999999;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+.wrapper-content {
+    display: flex;
+    justify-content: center;
+}
+.wrapper-title {
+    color: #0888ca;
+    font-size: 52px;
+}
+.wrapper img.screenshots {
+    height: 270px;
+    width: 200px;
+    box-shadow: 0px 0px 24px #d0d0d0;
+    margin: 21px;
+}
+
+.wrapper-content .start-game {
+    font-size: 32px;
+    text-decoration: none;
+    color: #0888ca;
+}
+
+.wrapper-content .start-button {
+    text-decoration: none;
+    color: #0888ca;
+    border-radius: 50%;
+    font-size: 78px;
+    vertical-align: middle;
+}
+
+@media (max-width: 1350px) and (min-height: 1100px) {
+    .timer {
+        right: 100px;
+    }
+
+    .scores {
+        right: 100px;
+    }
+}
+
+@media (max-width: 1100px) and (min-height: 650px) {
+    .timer {
+        position: inherit;
+        margin: 35%;
+        margin-top: 0px !important;
+        top: 0px !important;
+    }
+
+    .scores {
+        position: inherit;
+        margin: 35%;
+        margin-top: -200px !important;
+        top: 0px !important;
+    }
+}
+
+@media (max-width: 650px) and (min-width: 560px) {
+    div#memory_board {
+        width: 450px;
+        height: 303px;
+    }
+
+    div#memory_board > div {
+        width: 75px;
+        height: 75px;
+        font-size: 60px;
+    }
+
+    .timer {
+        position: inherit;
+        margin: 25%;
+        margin-top: 50px !important;
+        top: 0px !important;
+    }
+
+    .scores {
+        position: inherit;
+        margin: 25%;
+        margin-top: -130px !important;
+        top: 0px !important;
+    }
+}
+
+@media (max-width: 560px)  and (min-height: 400px) {
+    div#memory_board {
+        width: 360px;
+        height: 250px;
+    }
+
+    div#memory_board > div {
+        width: 60px;
+        height: 60px;
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 560px) and (min-height: 490px) {
+    .timer {
+        position: inherit;
+        margin: 25%;
+        margin-top: 50px !important;
+        top: 0px !important;
+    }
+
+    .scores {
+        position: inherit;
+        margin: 25%;
+        margin-top: -110px !important;
+        top: 0px !important;
+    }
+}
+
+@media (max-width: 490px) {
+    .timer {
+        margin: 30%;
+        padding: 0px 20px;
+    }
+
+    .scores {
+        margin: 30%;
+        padding: 0px 10px;
+    }
+}
+
+@media (max-width: 490px) {
+    div#memory_board {
+        width: 310px;
+    }
+
+    div#memory_board > div {
+        width: 50px;
+    }
+}
+
+@media (max-width: 1020px) {
+    .wrapper-content img.screenshots {
+        width: 25%;
+        box-shadow: 0px 0px 24px #d0d0d0;
+        margin: 5px;
+    }
+}
+
+
+

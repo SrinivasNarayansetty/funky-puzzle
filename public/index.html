@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="../styles/styles.css" rel="stylesheet">
+    <link href="vendor/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <script src="../src/app.js" type="text/javascript"></script>
+    <script src="vendor/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <title>Funky Puzzle</title>
+</head>
+<body>
+<div id="header"><center>
+    <div class="funky-header"><h1>Funky Puzzle</h1></div>
+</center></div>
+<br/><br/><br/><br/>
+<div id="game_area">
+    <div id="memory_board"></div>
+    <div class="timer">
+        <br/>
+        <span style="font-size: 35px;color: #0888ca;">Timer</span><br/>
+        <span id="output" style="font-size: 32px;padding: 0px 21px;"></span><br/>
+    </div>
+    <div class="scores" style="display: none;">
+        <br/>
+        <span style="font-size: 35px;color: #0888ca">Scores</span><br/>
+        <span id="scoreTable"></span>
+    </div>
+</div>
+<script>newBoard();</script>
+
+<div class="wrapper">
+    <div class="wrapper-content">
+        <center>
+            <center>
+                <br><br>
+                <span class="wrapper-title">Funky Puzzle</span>
+                <br><br><br>
+                <div class="intro-data">
+                    <img src="assets/images/screen1.png" class="screenshots">
+                    <img src="assets/images/screen2.png" class="screenshots">
+                    <img src="assets/images/screen3.png" class="screenshots">
+                </div>
+                <br><br><br><br>
+                <a href="javascript:;" class="start-game" onclick="startGame();" style="text-decoration: none;"><span>Start</span><!-- react-text: 107 --> <!-- /react-text --><i class="fa fa-play-circle-o start-button"></i></a>
+                <br><br><br><br>
+            </center>
+            <!--<a href="javascript:;"  >-->
+                <!--<span style="font-size: 40px;color:tomato;font-weight: bold;">Start</span>-->
+            <!--</a>-->
+        </center>
+    </div>
+</div>
+<a href="https://github.com/SrinivasNarayansetty">
+    <img style="position: absolute;top: 0;right: 0;border: 0;z-index: 999999999;"
+    src="assets/images/github.png"></a>
+
+
+</body>
+</html>
