@@ -13,9 +13,10 @@ Funky Puzzle is a simple game with JavaScript, Where player needs to find matchi
 HTML,JAVASCRIPT,CSS
 
 ## Stage 1
-![Guess Kitty](https://raw.githubusercontent.com/krishcdbry/guess-kitty-js/master/assets/img/guess-kitty-one.png)
-
-
 ![Funky Puzzle JS](https://github.com/SrinivasNarayansetty/funky-puzzle/blob/master/public/assets/images/screen1.png)
 
+## Stage 2
+![Funky Puzzle JS](https://github.com/SrinivasNarayansetty/funky-puzzle/blob/master/public/assets/images/screen2.png)
 
+## Stage 3
+![Funky Puzzle JS](https://github.com/SrinivasNarayansetty/funky-puzzle/blob/master/public/assets/images/screen3.png)
