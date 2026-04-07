@@ -3,10 +3,14 @@ import Card from './components/Card';
 import Timer from './components/Timer';
 import ScoreBoard from './components/ScoreBoard';
 import WelcomeScreen from './components/WelcomeScreen';
+import UsernameModal from './components/UsernameModal';
+import UserMenu from './components/UserMenu';
+import Dashboard from './components/Dashboard';
 
 // Game configuration
 const CARD_VALUES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
 const STORAGE_KEY = 'funky-puzzle-scores';
+const USER_KEY = 'funky-puzzle-user';
 
 // Utility function to shuffle array (Fisher-Yates algorithm)
 const shuffleArray = (array) => {
@@ -28,7 +32,11 @@ const createDeck = () => {
 };
 
 function App() {
+  const [username, setUsername] = useState(() => {
+    return localStorage.getItem(USER_KEY) || '';
+  });
   const [showWelcome, setShowWelcome] = useState(true);
+  const [showDashboard, setShowDashboard] = useState(false);
   const [cards, setCards] = useState(createDeck());
   const [flippedCards, setFlippedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
@@ -72,7 +80,6 @@ function App() {
 
   // Handle card flip
   const handleCardClick = useCallback((card) => {
-    // Prevent flipping more than 2 cards or clicking already matched/flipped cards
     if (
       isChecking ||
       flippedCards.length >= 2 ||
@@ -85,19 +92,16 @@ function App() {
     const newFlipped = [...flippedCards, card];
     setFlippedCards(newFlipped);
 
-    // Check for match when 2 cards are flipped
     if (newFlipped.length === 2) {
       setIsChecking(true);
 
       if (newFlipped[0].value === newFlipped[1].value) {
-        // Match found
         setTimeout(() => {
           setMatchedCards(prev => [...prev, newFlipped[0].id, newFlipped[1].id]);
           setFlippedCards([]);
           setIsChecking(false);
         }, 600);
       } else {
-        // No match - flip back
         setTimeout(() => {
           setFlippedCards([]);
           setIsChecking(false);
@@ -118,6 +122,7 @@ function App() {
 
   const startGame = () => {
     setShowWelcome(false);
+    setShowDashboard(false);
     setIsTimerRunning(true);
   };
 
@@ -130,18 +135,58 @@ function App() {
     setCurrentTime(time);
   };
 
+  const handleUsernameSubmit = (name) => {
+    setUsername(name);
+    localStorage.setItem(USER_KEY, name);
+  };
+
+  const handleLogout = () => {
+    setUsername('');
+    setScores([]);
+    setShowWelcome(true);
+    setShowDashboard(false);
+    setIsTimerRunning(false);
+    localStorage.removeItem(USER_KEY);
+    localStorage.removeItem(STORAGE_KEY);
+  };
+
+  // Show username modal if no user
+  if (!username) {
+    return <UsernameModal onSubmit={handleUsernameSubmit} />;
+  }
+
+  // Show dashboard
+  if (showDashboard) {
+    return (
+      <Dashboard
+        username={username}
+        scores={scores}
+        onBack={() => setShowDashboard(false)}
+        onClearScores={clearScores}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
-      {showWelcome && <WelcomeScreen onStart={startGame} />}
+      {showWelcome && <WelcomeScreen username={username} onStart={startGame} />}
 
       {!showWelcome && (
         <>
           {/* Header */}
           <header className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 shadow-lg">
-            <div className="container mx-auto px-4 py-6">
-              <h1 className="text-4xl md:text-5xl font-bold text-white text-center">
+            <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+              <h1 className="text-3xl md:text-4xl font-bold text-white">
                 🧩 Funky Puzzle
               </h1>
+              <UserMenu
+                username={username}
+                onDashboard={() => {
+                  setIsTimerRunning(false);
+                  setShowDashboard(true);
+                }}
+                onLogout={handleLogout}
+              />
             </div>
           </header>
 

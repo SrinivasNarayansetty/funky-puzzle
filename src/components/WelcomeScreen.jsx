@@ -1,12 +1,18 @@
-const WelcomeScreen = ({ onStart }) => {
+const WelcomeScreen = ({ username, onStart }) => {
   return (
     <div className="fixed inset-0 bg-gradient-to-br from-purple-600 via-pink-500 to-blue-600 flex items-center justify-center z-50 animate-gradient">
       <div className="max-w-4xl mx-auto px-6 text-center">
-        <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 animate-bounce-slow">
+        <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 animate-bounce-slow">
           🧩 Funky Puzzle
         </h1>
 
-        <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto">
+        {username && (
+          <p className="text-2xl md:text-3xl text-white/90 mb-8 font-semibold">
+            Hey {username}! Ready to play?
+          </p>
+        )}
+
+        <p className="text-xl md:text-2xl text-white/80 mb-12 max-w-2xl mx-auto">
           Test your memory and IQ power! Find all matching card positions by flipping them.
           Complete the puzzle as fast as you can to get the best score!
         </p>
@@ -15,7 +21,7 @@ const WelcomeScreen = ({ onStart }) => {
           <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6 border-2 border-white/30">
             <div className="text-5xl mb-3">🎯</div>
             <h3 className="text-lg font-bold text-white mb-2">24 Cards</h3>
-            <p className="text-white/80 text-sm">Find 12 matching pairs in a 6×4 grid</p>
+            <p className="text-white/80 text-sm">Find 12 matching pairs in a 6x4 grid</p>
           </div>
 
           <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6 border-2 border-white/30">
