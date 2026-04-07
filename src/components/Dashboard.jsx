@@ -1,4 +1,4 @@
-const Dashboard = ({ username, scores, onBack, onClearScores }) => {
+const Dashboard = ({ username, scores, onBack, onStartNewGame, onClearScores }) => {
   const formatTime = (totalSeconds) => {
     const hours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
@@ -68,17 +68,17 @@ const Dashboard = ({ username, scores, onBack, onClearScores }) => {
       {/* Header */}
       <header className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 shadow-lg">
         <div className="container mx-auto px-4 py-6 flex items-center justify-between">
-          <button
-            onClick={onBack}
-            className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            <span className="font-medium">Back to Game</span>
-          </button>
           <h1 className="text-2xl md:text-3xl font-bold text-white">Dashboard</h1>
-          <div className="w-24" /> {/* Spacer for centering */}
+          <button
+            onClick={onStartNewGame}
+            className="flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-medium px-5 py-2.5 rounded-full transition-all duration-300 border border-white/30 hover:scale-105"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>New Game</span>
+          </button>
         </div>
       </header>
 
@@ -106,7 +106,7 @@ const Dashboard = ({ username, scores, onBack, onClearScores }) => {
             <h3 className="text-2xl font-bold text-gray-700 mb-3">No Games Yet</h3>
             <p className="text-gray-500 mb-8">Play your first game to see your stats here!</p>
             <button
-              onClick={onBack}
+              onClick={onStartNewGame}
               className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
             >
               Play Now
@@ -164,8 +164,18 @@ const Dashboard = ({ username, scores, onBack, onClearScores }) => {
               </div>
             </div>
 
-            {/* Clear Scores */}
-            <div className="text-center">
+            {/* Actions */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button
+                onClick={onStartNewGame}
+                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-2"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Start New Game
+              </button>
               <button
                 onClick={onClearScores}
                 className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-2"

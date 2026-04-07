@@ -70,10 +70,16 @@ function App() {
     if (matchedCards.length > 0 && matchedCards.length === cards.length) {
       setIsTimerRunning(false);
 
-      // Add score and reset game after a delay
+      // Add score and redirect to dashboard after a delay
       setTimeout(() => {
         setScores(prev => [...prev, currentTime]);
-        resetGame();
+        setCards(createDeck());
+        setFlippedCards([]);
+        setMatchedCards([]);
+        setCurrentTime(0);
+        setIsChecking(false);
+        setShowWelcome(false);
+        setShowDashboard(true);
       }, 1500);
     }
   }, [matchedCards, cards, currentTime]);
@@ -162,6 +168,7 @@ function App() {
         username={username}
         scores={scores}
         onBack={() => setShowDashboard(false)}
+        onStartNewGame={startGame}
         onClearScores={clearScores}
       />
     );
