@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import Card from './components/Card';
+import Card, { getRandomTheme } from './components/Card';
 import Timer from './components/Timer';
 import ScoreBoard from './components/ScoreBoard';
 import WelcomeScreen from './components/WelcomeScreen';
@@ -44,6 +44,7 @@ function App() {
   const [currentTime, setCurrentTime] = useState(0);
   const [scores, setScores] = useState([]);
   const [isChecking, setIsChecking] = useState(false);
+  const [cardTheme, setCardTheme] = useState(getRandomTheme);
 
   // Load scores from localStorage on mount
   useEffect(() => {
@@ -78,6 +79,7 @@ function App() {
         setMatchedCards([]);
         setCurrentTime(0);
         setIsChecking(false);
+        setCardTheme(getRandomTheme());
         setShowWelcome(false);
         setShowDashboard(true);
       }, 1500);
@@ -124,9 +126,16 @@ function App() {
     setShowWelcome(true);
     setIsTimerRunning(false);
     setIsChecking(false);
+    setCardTheme(getRandomTheme());
   };
 
   const startGame = () => {
+    setCards(createDeck());
+    setFlippedCards([]);
+    setMatchedCards([]);
+    setCurrentTime(0);
+    setIsChecking(false);
+    setCardTheme(getRandomTheme());
     setShowWelcome(false);
     setShowDashboard(false);
     setIsTimerRunning(true);
@@ -154,6 +163,8 @@ function App() {
     setIsTimerRunning(false);
     localStorage.removeItem(USER_KEY);
     localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem('funky-puzzle-theme-queue');
+    localStorage.removeItem('funky-puzzle-theme-last');
   };
 
   // Show username modal if no user
@@ -201,8 +212,8 @@ function App() {
           <main className="container mx-auto px-4 py-8">
             <div className="flex flex-col lg:flex-row gap-8 items-start justify-center">
               {/* Game Board */}
-              <div className="flex-1 max-w-3xl">
-                <div className="grid grid-cols-4 sm:grid-cols-6 gap-3 sm:gap-4 bg-white/60 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border-4 border-white">
+              <div className="flex-1 max-w-2xl">
+                <div className="grid grid-cols-4 sm:grid-cols-6 gap-4 sm:gap-5 bg-white/60 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-2xl border-4 border-white">
                   {cards.map((card) => (
                     <Card
                       key={card.id}
@@ -210,6 +221,7 @@ function App() {
                       isFlipped={flippedCards.some(c => c.id === card.id)}
                       isMatched={matchedCards.includes(card.id)}
                       onClick={handleCardClick}
+                      theme={cardTheme}
                     />
                   ))}
                 </div>
@@ -226,7 +238,7 @@ function App() {
                     onClick={resetGame}
                     className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
                   >
-                    New Game
+                    Reset Game
                   </button>
                 </div>
               </div>
